@@ -2,6 +2,7 @@
 
 # Resourcepacks
 - [All Resourcepacks](https://github.com/orgs/Resourcepack-Registry/repositories)
+- [Template](https://github.com/Resourcepack-Registry/Template)
 
 ## Utility
 - 
