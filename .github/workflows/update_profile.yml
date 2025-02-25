@@ -7,14 +7,18 @@ on:
   push:
     paths:
       - "profile/template/*"
-      - ".github/workflows/update_profile.yml"
-      - ".github/workflows/config.json"
+      - ".github/workflows/profile_update.yml"
+      - ".github/workflows/profile_config.json"
   
   workflow_dispatch:
 
 permissions:
   contents: write
   actions: read
+
+env:
+  PATH_PROFILE_CONFIG: ".github/workflows/profile_config.json"
+  PATH_TEMPLATE_DIRECTORY: "profile/template"
   
 jobs:
   collect-categories:
@@ -32,7 +36,7 @@ jobs:
           repositories_url="https://api.github.com/orgs/$organization/repos?type=public"
           
           # Read the config file
-          config=$(cat ".github/workflows/config.json")
+          config=$(cat "$PATH_PROFILE_CONFIG")
           
           # Extract the blacklist and category mapping
           blacklist=$(echo "$config" | jq -r '.blacklist[]')
@@ -103,23 +107,19 @@ jobs:
               echo "::endgroup::"
           done
 
-          echo "::group:: Done generating JSON data"
-          echo "$category_data" | jq .
-          echo "::endgroup::"
+          echo "Done generating JSON data"
           
-          # Save the generated JSON data in a file
           echo "$category_data" > "profile/category_data.json"
 
       - name: Generate README from Template
         run: |
-          # Read the config file
-          config=$(cat ".github/workflows/config.json")
+          config=$(cat "$PATH_PROFILE_CONFIG")
           category_mapping=$(echo "$config" | jq -r '.category_mapping')
 
           # Read Markdown templates
-          template_md=$(<"profile/template/readme.md")
-          category_template=$(<"profile/template/category.md")
-          repository_template=$(<"profile/template/repository.md")
+          template_md=$(<"$PATH_TEMPLATE_DIRECTORY/readme.md")
+          category_template=$(<"$PATH_TEMPLATE_DIRECTORY/category.md")
+          repository_template=$(<"$PATH_TEMPLATE_DIRECTORY/repository.md")
           
           # Generate the 'categories' section
           categories_content=""
