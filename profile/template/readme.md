@@ -4,5 +4,6 @@
 > [All Resourcepacks](https://github.com/orgs/Resourcepack-Registry/repositories)
 
 [`Template`](https://github.com/Resourcepack-Registry/Template)
+[`default`](https://github.com/Resourcepack-Registry/default)
 
 ${categories}
