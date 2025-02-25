@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - "profile/template/*"
+      - ".github/workflows/update_profile.yml"
   
   workflow_dispatch:
 
@@ -124,6 +125,9 @@ jobs:
           for category in $(jq -r '.categories[].id' "profile/category_data.json"); do
               # Find the correct name for the category
               category_name=$(echo "$category_mapping" | jq -r --arg category "$category" '.[$category]')
+              if [ "$category_name" == "null" ]; then
+                category_name="$category"  # Use the category id as the name if no mapping exists
+              fi
               
               # Generate the 'repositories' section for each category
               repositories_content=""
