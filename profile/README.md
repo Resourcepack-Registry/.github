@@ -7,4 +7,4 @@
 [`default`](https://github.com/Resourcepack-Registry/default)
 
 ## Security
-[`resourcepack-security-craft`](https://github.com/Resourcepack-Registry/resourcepack-security-craft)
+[`security-craft`](https://github.com/Resourcepack-Registry/security-craft)
