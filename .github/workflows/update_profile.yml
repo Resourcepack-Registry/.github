@@ -2,7 +2,7 @@ name: 'Update Profile README'
 
 on:
   schedule:
-    - cron: '0 */24 * * *'
+    - cron: '30 */24 * * *'
   
   push:
     paths:
