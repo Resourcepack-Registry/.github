@@ -7,7 +7,7 @@ on:
   push:
     paths:
       - "profile/template/*"
-      - ".github/workflows/profile_update.yml"
+      - ".github/workflows/update_profile.yml"
       - ".github/workflows/profile_config.json"
   
   workflow_dispatch:
